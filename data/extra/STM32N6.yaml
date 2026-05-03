@@ -103,3 +103,21 @@ peripherals:
       kind: risaf
       version: n6
       block: RISAF
+  # SDMMC DLL delay blocks. Not declared as IPs in cube DB (same situation as
+  # on STM32H5/H7/U5), so we wire them in here. The N6 SVD names them DLYBSD
+  # with a different field layout, but the CMSIS device header (DLYB_TypeDef
+  # in stm32n657xx.h) shows the same CR/CFGR layout as on every other STM32
+  # with this block — we trust the header here. Same naming convention as
+  # data/extra/STM32H7.yaml and data/extra/STM32H5[67]x.yaml.
+  - name: DLYB_SDMMC1
+    address: 0x48028000
+    registers:
+      kind: dlyb
+      version: v1
+      block: DLYB
+  - name: DLYB_SDMMC2
+    address: 0x48026C00
+    registers:
+      kind: dlyb
+      version: v1
+      block: DLYB
